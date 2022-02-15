@@ -1,12 +1,27 @@
  import React from "react";
 
-export default function HomePage(){
-    return(
-        <div>
-            <h1>HomePage</h1>
-        </div>
+// export default function HomePage(){
+//     return(
+//         <div>
+//             <h1>HomePage</h1>
+//         </div>
+//     )
+
+// }
+
+
+import { Container, Center, Image } from '@chakra-ui/react'
+import logo from "../../assets/logo-branca.png"
+
+
+export default function HomePage() {
+
+    return (
+        <Container w={"100vw"} h={"100vh"} bg={"#e86e5a"}>
+            <Center>
+                <Image src={logo}/>
+            </Center>
+        </Container>
     )
-
 }
-
 
