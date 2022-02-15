@@ -7,12 +7,12 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
-    <div>
-      <h1>home</h1>
+    <ChakraProvider>
+
       <BrowserRouter>
-      <Router />
+        <Router />
       </BrowserRouter>
-    </div>
+    </ChakraProvider>
   );
 }
 
