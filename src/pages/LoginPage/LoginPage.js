@@ -62,7 +62,7 @@ export default function LoginPage() {
 
   return (
     <Center>
-      <Grid templateRows="repeat(3, 1fr)" gap={6}>
+      <Grid templateRows="repeat(3, 1fr)">
         <GridItem>
           <Center>
             <Image marginTop="88px" h="58px" w="104px" src={logo} />

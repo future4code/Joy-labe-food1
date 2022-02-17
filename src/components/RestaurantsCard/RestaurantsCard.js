@@ -12,21 +12,21 @@ export default function RestaurantCard(property) {
         <Box 
           maxW='sm' 
           borderWidth='1px'
+          borderColor={'#b8b8b8'}
           borderRadius='lg' 
           overflow='hidden' 
-          w={['100vw']} 
+          w='328px' 
           h='200px' 
           marginBottom={'8px'}>
           <Image 
             src={property.logoUrl} 
             alt={property.name} 
-            w='100vw' 
+            w='328px' 
             h='120px'
             />
-          <Box p='6'>
+          <Box p='2'>
             <Box
               mt='1'
-              fontWeight='semibold'
               as='h4'
               lineHeight='tight'
               color='#e86e5a'
@@ -37,10 +37,8 @@ export default function RestaurantCard(property) {
             <Flex justify='space-between' alignItems='baseline'>
               <Box
                 color='#b8b8b8'
-                fontWeight='semibold'
                 letterSpacing='wide'
                 fontSize='xs'
-                textTransform='uppercase'
                 fontSize='16px'
                 ml='2'
               >
@@ -48,12 +46,11 @@ export default function RestaurantCard(property) {
               </Box>
               <Box
                 color='#b8b8b8'
-                fontWeight='semibold'
                 letterSpacing='wide'
                 fontSize='16px'
                 ml='2'
               >
-                Frete R${property.shipping}
+                Frete R${property.shipping},00
               </Box>
             </Flex>
           
