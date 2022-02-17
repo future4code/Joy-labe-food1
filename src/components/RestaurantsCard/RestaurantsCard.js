@@ -1,8 +1,11 @@
 import { Box, Center, Flex, Image } from "@chakra-ui/react"
 import * as React from 'react'
+import { useState } from "react"
 
 
 export default function RestaurantCard(property) {
+
+  const [load, setLoad] = useState(true)
 
     return (
       <Center>
@@ -11,13 +14,13 @@ export default function RestaurantCard(property) {
           borderWidth='1px'
           borderRadius='lg' 
           overflow='hidden' 
-          w={['328px']} 
+          w={['100vw']} 
           h='200px' 
           marginBottom={'8px'}>
           <Image 
             src={property.logoUrl} 
-            alt={property.description} 
-            w='328px' 
+            alt={property.name} 
+            w='100vw' 
             h='120px'
             />
           <Box p='6'>
