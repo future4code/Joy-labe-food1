@@ -31,7 +31,6 @@ export default function LoginPage() {
   });
 
   const onSubmitLogin = (event) => {
-    console.log("entrou");
     event.preventDefault();
     const body = {
       email: form.email,
@@ -51,14 +50,8 @@ export default function LoginPage() {
       .catch((err) => {
         console.log(err);
         alert("Crie seu cadastro");
-
       });
   };
-
-  // if (getToken()) {
-  //   goToHome(navigate);
-  // }
-
 
   return (
     <Center>
