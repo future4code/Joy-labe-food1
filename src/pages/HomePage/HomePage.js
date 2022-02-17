@@ -6,7 +6,6 @@ import RestaurantCard from "../../components/RestaurantsCard/RestaurantsCard";
 import {
   Box,
   Center,
-  Container,
   Grid,
   GridItem,
   Heading,
@@ -26,12 +25,16 @@ import {
 import { Search2Icon } from "@chakra-ui/icons";
 import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai"
 import { MdPersonOutline } from 'react-icons/md'
-import loadimage from "../../assets/Spinner-1s-200px.gif";
+import { goToCartPage, goToHome, goToProfilePage } from "../../Routes/Coordinator";
+import { useNavigate } from "react-router-dom";
+import useForm from "../../hooks/useForm";
 
 export default function HomePage() {
   const [listRestaurants, setListRestaurants] = useState([]);
   const [filterType, setFilterType] = useState();
   const [load, setLoad] = useState(true);
+  const navigate = useNavigate();
+
 
   const getRestaurants = () => {
     setLoad(true);
@@ -43,7 +46,6 @@ export default function HomePage() {
       })
       .then((res) => {
         setLoad(false);
-        console.log(res.data.restaurants);
         setListRestaurants(res.data.restaurants);
       })
       .catch((err) => {
@@ -51,18 +53,35 @@ export default function HomePage() {
       });
   };
 
+  const { form, onChange } = useForm({ searchRestaurant: "" })
+
+  const filteredRestaurantsLists = listRestaurants
+    .filter((restaurant) => {
+      return restaurant.name
+        .toLowerCase()
+        .includes(form.searchRestaurant.toLowerCase());
+    })
+    .map((restaurant) => {
+      if (form.searchRestaurant === restaurant.name) {
+        return (
+          <RestaurantCard
+            key={restaurant.id}
+            logoUrl={restaurant.logoUrl}
+            description={restaurant.description}
+            deliveryTime={restaurant.deliveryTime}
+            shipping={restaurant.shipping}
+            name={restaurant.name}
+            category={restaurant.category}
+          ></RestaurantCard>
+        )
+      }
+    })
   useEffect(() => {
     getRestaurants();
   }, []);
 
   const renderedRestaurants = listRestaurants.map((restaurant) => {
-    return load ? (
-      <Stack>
-        <Skeleton w="328px" h="120px" />
-        <Skeleton height="20px" w="20%" />
-        <Skeleton height="20px" w="328px" />
-      </Stack>
-    ) : (
+    return (
       <RestaurantCard
         key={restaurant.id}
         logoUrl={restaurant.logoUrl}
@@ -74,16 +93,9 @@ export default function HomePage() {
       ></RestaurantCard>
     );
   });
-
   const renderedArabicRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Árabe") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -98,13 +110,7 @@ export default function HomePage() {
   });
   const renderedAsianRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Asiática") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -119,13 +125,7 @@ export default function HomePage() {
   });
   const renderedBurgerRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Hamburguer") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -140,13 +140,7 @@ export default function HomePage() {
   });
   const renderedItalianRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Italiana") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -161,13 +155,7 @@ export default function HomePage() {
   });
   const renderedIceCreamRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Sorvetes") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -182,13 +170,7 @@ export default function HomePage() {
   });
   const renderedMeatRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Carnes") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -203,13 +185,7 @@ export default function HomePage() {
   });
   const renderedBaianoRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Baiana") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -224,13 +200,7 @@ export default function HomePage() {
   });
   const renderedSnackRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Petiscos") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -245,13 +215,7 @@ export default function HomePage() {
   });
   const renderedMexicanRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Mexicana") {
-      return load ? (
-        <Stack>
-          <Skeleton w="328px" h="120px" />
-          <Skeleton height="20px" w="20%" />
-          <Skeleton height="20px" w="328px" />
-        </Stack>
-      ) : (
+      return (
         <RestaurantCard
           key={restaurant.id}
           logoUrl={restaurant.logoUrl}
@@ -287,23 +251,28 @@ export default function HomePage() {
             pointerEvents="none"
             children={<Search2Icon color="gray.300" />}
           />
-          <Input type="search" placeholder="Restaurante" />
+          <Input
+            type="search"
+            placeholder="Restaurante"
+            onChange={onChange}
+            value={form.searchRestaurant}
+            name={'searchRestaurant'} />
         </InputGroup>
       </Center>
       <Center h={'80vh'}>
         <Tabs>
-        <Center>
+          <Center>
             <TabList overflowX={'scroll'} overflowY={'hidden'} w='100vw'>
-              <Tab _selected={{color: '#e86e5a'}}>Todos os Restaurantes</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Árabe</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Asiática</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Hamburguer</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Italiana</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Sorvetes</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Carnes</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Baiana</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Petiscos</Tab>
-              <Tab _selected={{color: '#e86e5a'}}>Mexicana</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Todos os Restaurantes</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Árabe</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Asiática</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Hamburguer</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Italiana</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Sorvetes</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Carnes</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Baiana</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Petiscos</Tab>
+              <Tab _selected={{ color: '#e86e5a' }}>Mexicana</Tab>
             </TabList>
           </Center>
 
@@ -313,6 +282,7 @@ export default function HomePage() {
             </Center>
           ) : (
             <TabPanels overflowY={'scroll'} h='60vh'>
+              {filteredRestaurantsLists}
               <TabPanel>
                 {renderedRestaurants}
               </TabPanel>
@@ -348,27 +318,31 @@ export default function HomePage() {
         </Tabs>
       </Center>
       <Center>
-        <Grid 
-        templateColumns={'repeat(3, 1fr)'} 
-        shadow={'lg'}
-        borderWidth='1px'
-        w={'100vw'}
-        align='center'>
+        <Grid
+          templateColumns={'repeat(3, 1fr)'}
+          shadow={'lg'}
+          borderWidth='1px'
+          w={'100vw'}
+          align='center'
+          position={'fixed'}
+        >
           <GridItem>
             <IconButton
               as={AiOutlineHome}
               bg={'white'}
               w={'27px'}
               h={'27px'}
-              color={'#e865a'}/>
+              color={'#e865a'}
+              onClick={() => goToHome(navigate)} />
           </GridItem>
           <GridItem>
             <IconButton
-              as={AiOutlineShoppingCart} 
+              as={AiOutlineShoppingCart}
               bg={'white'}
               w={'27px'}
               h={'27px'}
-              />
+              onClick={() => goToCartPage(navigate)}
+            />
           </GridItem>
           <GridItem>
             <IconButton
@@ -376,7 +350,8 @@ export default function HomePage() {
               bg={'white'}
               w={'27px'}
               h={'27px'}
-              />
+              onClick={() => goToProfilePage(navigate)}
+            />
           </GridItem>
         </Grid>
       </Center>
