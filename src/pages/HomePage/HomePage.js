@@ -21,6 +21,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai"
@@ -28,6 +29,7 @@ import { MdPersonOutline } from 'react-icons/md'
 import { goToCartPage, goToHome, goToProfilePage } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
+
 
 export default function HomePage() {
   const [listRestaurants, setListRestaurants] = useState([]);
@@ -62,7 +64,6 @@ export default function HomePage() {
         .includes(form.searchRestaurant.toLowerCase());
     })
     .map((restaurant) => {
-      if (form.searchRestaurant === restaurant.name) {
         return (
           <RestaurantCard
             key={restaurant.id}
@@ -74,8 +75,16 @@ export default function HomePage() {
             category={restaurant.category}
           ></RestaurantCard>
         )
-      }
     })
+  
+    // const wrongSearch = (restaurant) => {
+    //   if (form.searchRestaurant !== restaurant.name){
+    //     return(
+    //       <p>Você acha que isso faz sentido?</p>
+    //     )
+    //   }
+    // }
+
   useEffect(() => {
     getRestaurants();
   }, []);
@@ -282,7 +291,7 @@ export default function HomePage() {
             </Center>
           ) : (
             <TabPanels overflowY={'scroll'} h='60vh'>
-              {filteredRestaurantsLists}
+              {filteredRestaurantsLists.length ? filteredRestaurantsLists:<Center><Text marginTop={"20px"}>Não Encontramos :(</Text></Center>}
               <TabPanel>
                 {renderedRestaurants}
               </TabPanel>
