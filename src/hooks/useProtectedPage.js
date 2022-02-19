@@ -1,14 +1,14 @@
-// import { useHistory } from "react-router-dom";
-import { getToken } from "../constants/localStorage"
+import { getToken } from "../constants/localStorage";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { goToLoginPage } from "../Routes/Coordinator";
 
-// TODO usar navigate ao invés de history
 
 export const useProtectedPage = () => {
-    const history = useHistory(); 
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = getToken();
-        // if(!token) history.push("/login")
-    })
-}
+  useEffect(() => {
+    const token = getToken();
+    if (!token) goToLoginPage(navigate);
+  });
+};

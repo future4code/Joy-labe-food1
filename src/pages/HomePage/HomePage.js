@@ -77,14 +77,6 @@ export default function HomePage() {
         )
     })
   
-    // const wrongSearch = (restaurant) => {
-    //   if (form.searchRestaurant !== restaurant.name){
-    //     return(
-    //       <p>Você acha que isso faz sentido?</p>
-    //     )
-    //   }
-    // }
-
   useEffect(() => {
     getRestaurants();
   }, []);
