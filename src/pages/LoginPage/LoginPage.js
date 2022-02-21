@@ -15,6 +15,7 @@ import {
   Image,
   Input,
   Text,
+  textDecoration,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { goToHome, goToSignUpPage } from "../../Routes/Coordinator";
@@ -151,7 +152,7 @@ export default function LoginPage() {
             <Text marginRight="15px" fontSize="xl">
               Não possui cadastro?
             </Text>
-            <Text fontSize="xl" onClick={() => goToSignUpPage(navigate)}>
+            <Text fontSize="xl" _hover={{cursor: 'pointer'}} textDecoration={ 'underline'} onClick={() => goToSignUpPage(navigate)}>
               Clique aqui!
             </Text>
           </Center>

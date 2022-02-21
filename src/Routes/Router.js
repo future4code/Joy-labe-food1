@@ -17,11 +17,12 @@ const Router = () => {
     return(
         
             <Routes>
-                <Route exact path="/" element={<HomePage/>}/> 
+                <Route exact path="/home" element={<HomePage/>}/> 
                 <Route exact path="/cart" element={<CartPage/>}/> 
                 <Route exact path="/edit-adress" element={<EditAdressPage/>}/> 
                 <Route exact path="/edit-profile" element={<EditProfilePage/>}/> 
                 <Route exact path="/login" element={<LoginPage/>}/> 
+                <Route exact path="/" element={<LoginPage/>}/> 
                 <Route exact path="/profile" element={<ProfilePage/>}/> 
                 <Route exact path="/register-adress" element={<RegisterAdressPage/>}/> 
                 <Route exact path="/result:id" element={<ResultPage/>}/> 
