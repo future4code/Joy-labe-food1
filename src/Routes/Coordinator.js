@@ -1,5 +1,5 @@
 export const goToHome = (navigate) => {
-    navigate("/")
+    navigate("/home")
 }
 
 export const goToCartPage = (navigate) => {
