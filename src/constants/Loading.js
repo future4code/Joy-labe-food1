@@ -1,5 +1,5 @@
 import { Container, Center, Image } from '@chakra-ui/react'
-import logo from "../../assets/logo-branca.png"
+import logo from "../assets/logo-branca.png"
 import React from 'react'
 
 

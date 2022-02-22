@@ -3,7 +3,7 @@ import axios from "axios";
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/BASE_URL";
-import { goToLoginPage } from "../../Routes/Coordinator";
+import { goToHome } from "../../Routes/Coordinator";
 import {
   Center,
   Container,
@@ -62,7 +62,7 @@ export const theme = extendTheme({
 
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const { form, onChange } = useForm({
+  const { form, onChange, cleanFields } = useForm({
     name: "",
     email: "",
     cpf: "",
@@ -80,10 +80,13 @@ export default function SignUpPage() {
     axios
       .post(`${BASE_URL}/signup`, body)
       .then((res) => {
+        cleanFields()
         console.log(res.data.user);
+        window.alert("Cadastro efetuado com sucesso!")
+        goToHome(navigate)
       })
-      .catch((error) => {
-        alert("Email ou CPF já cadastrados");
+      .catch((err) => {
+        window.alert(err.response.data.message);
       });
   };
 
@@ -185,11 +188,11 @@ export default function SignUpPage() {
               bg="#e86e5a"
               w="328px"
               h="42px"
+              type={"submit"}
               onClick={onSubmitSignUp}
             >
               Entrar
             </Button>
-            {/* </FormControl> */}
           </GridItem>
         </Grid>
       </ChakraProvider>
