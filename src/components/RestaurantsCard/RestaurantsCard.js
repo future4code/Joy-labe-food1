@@ -17,7 +17,9 @@ export default function RestaurantCard(property) {
           overflow='hidden' 
           w='328px' 
           h='200px' 
-          marginBottom={'8px'}>
+          marginBottom={'8px'}
+          marginTop={'8px'}
+          onClick={property.onClick}>
           <Image 
             src={property.logoUrl} 
             alt={property.name} 

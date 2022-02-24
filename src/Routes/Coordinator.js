@@ -30,7 +30,7 @@ export const goToRegisterAdressPage  = (navigate) => {
     navigate("/register-adress")
 }
 
-export const goResultPage  = (navigate, id) => {
+export const goToResultPage  = (navigate, id) => {
     navigate(`/result/${id}`)
 }
 

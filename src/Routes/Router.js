@@ -25,7 +25,7 @@ const Router = () => {
                 <Route exact path="/" element={<LoginPage/>}/> 
                 <Route exact path="/profile" element={<ProfilePage/>}/> 
                 <Route exact path="/register-adress" element={<RegisterAdressPage/>}/> 
-                <Route exact path="/result:id" element={<ResultPage/>}/> 
+                <Route exact path="/result/:id" element={<ResultPage/>}/> 
                 <Route exact path="/search" element={<SearchPage/>}/> 
                 <Route exact path="/sign-up" element={<SignUpPage/>}/> 
                 <Route path="/*" element={<ErrorPage/>}/>
