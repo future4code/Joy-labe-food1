@@ -8,7 +8,7 @@ export default function HomePage() {
     return (
         <Container w={"100vw"} h={"100vh"} bg={"#e86e5a"}>
             <Center>
-                <Image src={logo}/>
+                <Image src={logo} w={'126px'} h={"65px"} marginTop={'calc(50vh - 32.5px)'}/>
             </Center>
         </Container>
     )

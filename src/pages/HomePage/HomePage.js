@@ -26,15 +26,15 @@ import {
 import { Search2Icon } from "@chakra-ui/icons";
 import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai"
 import { MdPersonOutline } from 'react-icons/md'
-import { goToCartPage, goToHome, goToProfilePage } from "../../Routes/Coordinator";
+import { goToCartPage, goToHome, goToProfilePage, goToResultPage } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
+import { auth } from "../../constants/auth";
 
 
 
 export default function HomePage() {
   const [listRestaurants, setListRestaurants] = useState([]);
-  const [filterType, setFilterType] = useState();
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
 
@@ -42,11 +42,8 @@ export default function HomePage() {
   const getRestaurants = () => {
     setLoad(true);
     axios
-      .get(`${BASE_URL}/restaurants`, {
-        headers: {
-          auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkEwMDVtSEJmeVNrdDdPTjBITGFwIiwibmFtZSI6IkFzdHJvZGV2IiwiZW1haWwiOiJhc3Ryb2RldkBmdXR1cmU0LmNvbSIsImNwZiI6IjMzMy44ODguNjY2LTQ0IiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlJ1YSBNYWVzdHJvIEpvw6NvIFNlcHBlLCAzMDMgLSBwYXJhaXNvIiwiaWF0IjoxNjQ0OTY3NzE4fQ.T3d7RCxUUR5RxCCDi9_Vr2_MqsImWtL9jVkwhoX5w3M",
-        },
-      })
+      .get(`${BASE_URL}/restaurants`, auth
+      )
       .then((res) => {
         setLoad(false);
         setListRestaurants(res.data.restaurants);
@@ -65,23 +62,27 @@ export default function HomePage() {
         .includes(form.searchRestaurant.toLowerCase());
     })
     .map((restaurant) => {
-        return (
-          <RestaurantCard
-            key={restaurant.id}
-            logoUrl={restaurant.logoUrl}
-            description={restaurant.description}
-            deliveryTime={restaurant.deliveryTime}
-            shipping={restaurant.shipping}
-            name={restaurant.name}
-            category={restaurant.category}
-          ></RestaurantCard>
-        )
+      return (
+        <RestaurantCard
+          key={restaurant.id}
+          logoUrl={restaurant.logoUrl}
+          description={restaurant.description}
+          deliveryTime={restaurant.deliveryTime}
+          shipping={restaurant.shipping}
+          name={restaurant.name}
+          category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
+        ></RestaurantCard>
+      )
     })
-  
+
   useEffect(() => {
     getRestaurants();
   }, []);
 
+  const onClickCard = (id) => {
+    goToResultPage(navigate, id)
+  }
   const renderedRestaurants = listRestaurants.map((restaurant) => {
     return (
       <RestaurantCard
@@ -92,6 +93,7 @@ export default function HomePage() {
         shipping={restaurant.shipping}
         name={restaurant.name}
         category={restaurant.category}
+        onClick={() => onClickCard(restaurant.id)}
       ></RestaurantCard>
     );
   });
@@ -106,6 +108,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -121,6 +124,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -136,6 +140,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -151,6 +156,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -166,6 +172,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -181,6 +188,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -196,6 +204,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -211,6 +220,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -226,6 +236,7 @@ export default function HomePage() {
           shipping={restaurant.shipping}
           name={restaurant.name}
           category={restaurant.category}
+          onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
       );
     }
@@ -284,7 +295,7 @@ export default function HomePage() {
             </Center>
           ) : (
             <TabPanels overflowY={'scroll'} h='60vh'>
-              {filteredRestaurantsLists.length ? filteredRestaurantsLists:<Center><Text marginTop={"20px"}>Não Encontramos :(</Text></Center>}
+              {/* {filteredRestaurantsLists.length ? filteredRestaurantsLists:<Center><Text marginTop={"20px"}>Não Encontramos :(</Text></Center>} */}
               <TabPanel>
                 {renderedRestaurants}
               </TabPanel>
