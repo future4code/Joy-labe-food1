@@ -13,9 +13,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Skeleton,
   Spinner,
-  Stack,
   Tab,
   TabList,
   TabPanel,
@@ -83,20 +81,20 @@ export default function HomePage() {
   const onClickCard = (id) => {
     goToResultPage(navigate, id)
   }
-  const renderedRestaurants = listRestaurants.map((restaurant) => {
-    return (
-      <RestaurantCard
-        key={restaurant.id}
-        logoUrl={restaurant.logoUrl}
-        description={restaurant.description}
-        deliveryTime={restaurant.deliveryTime}
-        shipping={restaurant.shipping}
-        name={restaurant.name}
-        category={restaurant.category}
-        onClick={() => onClickCard(restaurant.id)}
-      ></RestaurantCard>
-    );
-  });
+  // const renderedRestaurants = listRestaurants.map((restaurant) => {
+  //   return (
+  //     <RestaurantCard
+  //       key={restaurant.id}
+  //       logoUrl={restaurant.logoUrl}
+  //       description={restaurant.description}
+  //       deliveryTime={restaurant.deliveryTime}
+  //       shipping={restaurant.shipping}
+  //       name={restaurant.name}
+  //       category={restaurant.category}
+  //       onClick={() => onClickCard(restaurant.id)}
+  //     ></RestaurantCard>
+  //   );
+  // });
   const renderedArabicRestaurants = listRestaurants.map((restaurant) => {
     if (restaurant.category === "Árabe") {
       return (
@@ -295,9 +293,8 @@ export default function HomePage() {
             </Center>
           ) : (
             <TabPanels overflowY={'scroll'} h='60vh'>
-              {/* {filteredRestaurantsLists.length ? filteredRestaurantsLists:<Center><Text marginTop={"20px"}>Não Encontramos :(</Text></Center>} */}
               <TabPanel>
-                {renderedRestaurants}
+              {filteredRestaurantsLists.length ? filteredRestaurantsLists:<Center><Text marginTop={"20px"}>Não Encontramos :(</Text></Center>}
               </TabPanel>
               <TabPanel>
                 {renderedArabicRestaurants}

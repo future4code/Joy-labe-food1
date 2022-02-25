@@ -15,7 +15,6 @@ import {
   Image,
   Input,
   Text,
-  textDecoration,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { goToHome, goToSignUpPage } from "../../Routes/Coordinator";
