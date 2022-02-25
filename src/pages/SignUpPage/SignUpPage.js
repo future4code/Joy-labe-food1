@@ -17,7 +17,6 @@ import {
   Text,
   Button,
   Container,
-  IconButton,
 } from "@chakra-ui/react";
 import back from "../../assets/back.svg"
 import logo from "../../assets/logo-laranja.png";
