@@ -6,7 +6,6 @@ import { auth } from "../../constants/auth";
 import RestaurantDetailsCard from "../../components/RestaurantsCard/RestaurantsDetailsCard";
 import {
   Box,
-  Center,
   Container,
   Divider,
   Flex,
@@ -50,11 +49,82 @@ export default function ResultPage() {
       product.category !== "Acompanhamento"
     ) {
       return (
-        <Flex key={product.id}>
-          <Image src={product.photoUrl} alt={product.name} />
+        <Flex
+          border="solid 1px #b8b8b8"
+          borderRadius="8px"
+          margin="16px"
+          w="328px"
+          h="112px"
+          key={product.id}
+        >
+          <Image
+            w="97px"
+            h="112.6px"
+            borderTopLeftRadius="8px"
+            borderBottomLeftRadius="8px"
+            src={product.photoUrl}
+            alt={product.name}
+          />
           <Box ml="3">
             <Text fontWeight="bold">{product.name}</Text>
             <Text fontSize="sm">{product.description}</Text>
+            <Text fontSize="sm">R${product.price},00</Text>
+          </Box>
+        </Flex>
+      );
+    }
+  });
+
+  const sideDishProductsMapped = products.map((product) => {
+    if (product.category === "Acompanhamento") {
+      return (
+        <Flex
+          border="solid 1px #b8b8b8"
+          borderRadius="8px"
+          margin="16px"
+          w="328px"
+          h="112px"
+          key={product.id}
+        >
+          <Image
+            w="97px"
+            h="112.6px"
+            borderTopLeftRadius="8px"
+            borderBottomLeftRadius="8px"
+            src={product.photoUrl}
+            alt={product.name}
+          />
+          <Box ml="3">
+            <Text fontWeight="bold">{product.name}</Text>
+            <Text fontSize="sm">{product.description}</Text>
+            <Text fontSize="sm">R${product.price},00</Text>
+          </Box>
+        </Flex>
+      );
+    }
+  });
+
+  const drinkProductsMapped = products.map((product) => {
+    if (product.category === "Bebida") {
+      return (
+        <Flex
+          border="solid 1px #b8b8b8"
+          borderRadius="8px"
+          margin="16px"
+          w="328px"
+          h="112px"
+          key={product.id}
+        >
+          <Image
+            borderTopLeftRadius="8px"
+            borderBottomLeftRadius="8px"
+            src={product.photoUrl}
+            alt={product.name}
+          />
+          <Box ml="3">
+            <Text fontWeight="bold">{product.name}</Text>
+            <Text fontSize="sm">{product.description}</Text>
+            <Text fontSize="sm">R${product.price},00</Text>
           </Box>
         </Flex>
       );
@@ -98,6 +168,27 @@ export default function ResultPage() {
       </Text>
       <Divider />
       {mainProductsMapped}
+
+      <Text
+        marginLeft="16px"
+        alignSelf="center"
+        textAlign="left"
+        fontSize="16px"
+      >
+        Acompanhamentos
+      </Text>
+      <Divider />
+      {sideDishProductsMapped}
+      <Text
+        marginLeft="16px"
+        alignSelf="center"
+        textAlign="left"
+        fontSize="16px"
+      >
+        Bebidas
+      </Text>
+      <Divider />
+      {drinkProductsMapped}
     </Container>
   );
 }
