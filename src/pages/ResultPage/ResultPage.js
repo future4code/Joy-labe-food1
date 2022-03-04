@@ -43,7 +43,13 @@ export default function ResultPage() {
     getRestaurantDetails(id);
   }, []);
 
+  const currency = function(number){
+    return new Intl.NumberFormat('en-IN', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}).format(number);
+  };
+
   const mainProductsMapped = products.map((product) => {
+   
+
     if (
       product.category !== "Bebida" &&
       product.category !== "Acompanhamento"
@@ -59,6 +65,7 @@ export default function ResultPage() {
         >
           <Image
             w="97px"
+            maxW="97px"
             h="112.6px"
             borderTopLeftRadius="8px"
             borderBottomLeftRadius="8px"
@@ -66,10 +73,25 @@ export default function ResultPage() {
             alt={product.name}
           />
           <Box ml="3">
-            <Text fontWeight="bold">{product.name}</Text>
-            <Text fontSize="sm">{product.description}</Text>
-            <Text fontSize="sm">R${product.price},00</Text>
+            <Text 
+              fontWeight="bold"
+              fontSize="16px" 
+              color="#e86e5a">
+              {product.name}
+            </Text>
+            <Text 
+              fontSize="14px" 
+              color="#b8b8b8">
+              {product.description}
+            </Text>
+            <Text 
+              fontWeight="bold"
+              fontSize="16px" 
+              color="000000">
+              {currency(product.toString().price)}
+            </Text>
           </Box>
+       
         </Flex>
       );
     }
@@ -95,9 +117,23 @@ export default function ResultPage() {
             alt={product.name}
           />
           <Box ml="3">
-            <Text fontWeight="bold">{product.name}</Text>
-            <Text fontSize="sm">{product.description}</Text>
-            <Text fontSize="sm">R${product.price},00</Text>
+            <Text 
+              fontWeight="bold"
+              fontSize="16px" 
+              color="#e86e5a">
+              {product.name}
+            </Text>
+            <Text 
+              fontSize="14px" 
+              color="#b8b8b8">
+              {product.description}
+            </Text>
+            <Text 
+              fontWeight="bold" 
+              fontSize="16px" 
+              color="000000">
+              {currency(product.price)}
+            </Text>
           </Box>
         </Flex>
       );
@@ -120,11 +156,26 @@ export default function ResultPage() {
             borderBottomLeftRadius="8px"
             src={product.photoUrl}
             alt={product.name}
+            maxW="97px"
           />
           <Box ml="3">
-            <Text fontWeight="bold">{product.name}</Text>
-            <Text fontSize="sm">{product.description}</Text>
-            <Text fontSize="sm">R${product.price},00</Text>
+            <Text 
+              fontWeight="bold"
+              fontSize="16px" 
+              color="#e86e5a">
+              {product.name}
+            </Text>
+            <Text 
+              fontSize="14px" 
+              color="#b8b8b8">
+              {product.description}
+            </Text>
+            <Text 
+              fontWeight="bold" 
+              fontSize="16px" 
+              color="000000">
+              {currency(product.price)}
+            </Text>
           </Box>
         </Flex>
       );
