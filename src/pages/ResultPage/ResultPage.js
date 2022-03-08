@@ -6,6 +6,7 @@ import { auth } from "../../constants/auth";
 import RestaurantDetailsCard from "../../components/RestaurantsCard/RestaurantsDetailsCard";
 import {
   Box,
+  Button,
   Container,
   Divider,
   Flex,
@@ -44,7 +45,8 @@ export default function ResultPage() {
   }, []);
 
   const currency = function(number){
-    return new Intl.NumberFormat('en-IN', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}).format(number);
+    return new Intl.NumberFormat('pt-BR', {style: 'currency',currency: 'BRL', minimumFractionDigits: 2}).format(number);
+    //adriano rei do pt-br
   };
 
   const mainProductsMapped = products.map((product) => {
@@ -55,7 +57,7 @@ export default function ResultPage() {
       product.category !== "Acompanhamento"
     ) {
       return (
-        <Flex
+        <Grid
           border="solid 1px #b8b8b8"
           borderRadius="8px"
           margin="16px"
@@ -67,6 +69,7 @@ export default function ResultPage() {
             w="97px"
             maxW="97px"
             h="112.6px"
+            maxH={'112.6px'}
             borderTopLeftRadius="8px"
             borderBottomLeftRadius="8px"
             src={product.photoUrl}
@@ -76,23 +79,41 @@ export default function ResultPage() {
             <Text 
               fontWeight="bold"
               fontSize="16px" 
-              color="#e86e5a">
+              color="#e86e5a"
+              marginTop={'18px'}>
               {product.name}
             </Text>
             <Text 
               fontSize="14px" 
-              color="#b8b8b8">
+              color="#b8b8b8"
+              >
               {product.description}
             </Text>
             <Text 
               fontWeight="bold"
               fontSize="16px" 
               color="000000">
-              {currency(product.toString().price)}
+              {currency(product.price)}
             </Text>
           </Box>
-       
-        </Flex>
+          <Button 
+          variant={'outline'}
+          borderColor={'black'}
+          borderTopLeftRadius={'8px'}
+          borderTopRightRadius={'0px'}
+          borderBottomRightRadius={'8px'}
+          borderBottomLeftRadius={'0px'}
+          alignSelf={'flex-end'}
+          fontSize={'12px'}
+          maxW={'90px'}
+          minW='90px'
+          h={'31px'}
+          padding={'0'}
+          margin={'0'}
+          color={'black'}
+          >adicionar
+          </Button>
+        </Grid>
       );
     }
   });
@@ -135,6 +156,23 @@ export default function ResultPage() {
               {currency(product.price)}
             </Text>
           </Box>
+          <Button 
+          variant={'outline'}
+          borderColor={'black'}
+          borderTopLeftRadius={'8px'}
+          borderTopRightRadius={'0px'}
+          borderBottomRightRadius={'8px'}
+          borderBottomLeftRadius={'0px'}
+          alignSelf={'flex-end'}
+          fontSize={'12px'}
+          maxW={'90px'}
+          minW='90px'
+          h={'31px'}
+          padding={'0'}
+          margin={'0'}
+          color={'black'}
+          >adicionar
+          </Button>
         </Flex>
       );
     }
@@ -177,6 +215,23 @@ export default function ResultPage() {
               {currency(product.price)}
             </Text>
           </Box>
+          <Button 
+          variant={'outline'}
+          borderColor={'black'}
+          borderTopLeftRadius={'8px'}
+          borderTopRightRadius={'0px'}
+          borderBottomRightRadius={'8px'}
+          borderBottomLeftRadius={'0px'}
+          alignSelf={'flex-end'}
+          fontSize={'12px'}
+          maxW={'90px'}
+          minW='90px'
+          h={'31px'}
+          padding={'0'}
+          margin={'0'}
+          color={'black'}
+          >adicionar
+          </Button>
         </Flex>
       );
     }
