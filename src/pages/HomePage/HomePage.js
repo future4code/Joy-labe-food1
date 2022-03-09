@@ -252,6 +252,7 @@ export default function HomePage() {
           h="44px"
           textAlign={"center"}
           marginBottom="8px"
+          mt="13px"
         >
           Rappi4
         </Heading>

@@ -32,6 +32,7 @@ export const theme = extendTheme({
       variants: {
         floating: {
           container: {
+            right:"12px",
             _focusWithin: {
               label: {
                 ...activeLabelStyles,
@@ -106,19 +107,10 @@ export default function RegisterAdressPage() {
       <hr />
       <Center>
         <ChakraProvider theme={theme}>
-          <Grid templateRows="1fr 4fr">
+          <Grid templateRows="1fr 8fr">
             <GridItem>
               <Center>
-                <Image
-                  marginTop={"24px"}
-                  marginBottom={"28px"}
-                  h="58px"
-                  w="104px"
-                  src={logo}
-                />
-              </Center>
-              <Center>
-                <Text fontSize="16px">Meu endereço</Text>
+                <Text fontSize="16px" mt="24px">Meu endereço</Text>
               </Center>
             </GridItem>
             <GridItem w="328px">
@@ -222,7 +214,7 @@ export default function RegisterAdressPage() {
               <br />
 
               <Button
-                marginLeft="14px"
+                // marginLeft="14px"
                 bg="#e86e5a"
                 w="328px"
                 h="42px"

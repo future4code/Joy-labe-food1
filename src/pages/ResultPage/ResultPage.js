@@ -61,58 +61,69 @@ export default function ResultPage() {
           border="solid 1px #b8b8b8"
           borderRadius="8px"
           margin="16px"
-          w="328px"
-          h="112px"
+          maxW="328px"
+          maxH="112px"
+          templateColumns='1fr 2fr'
           key={product.id}
         >
-          <Image
-            w="97px"
-            maxW="97px"
-            h="112.6px"
-            maxH={'112.6px'}
-            borderTopLeftRadius="8px"
-            borderBottomLeftRadius="8px"
-            src={product.photoUrl}
-            alt={product.name}
-          />
-          <Box ml="3">
-            <Text 
-              fontWeight="bold"
-              fontSize="16px" 
-              color="#e86e5a"
-              marginTop={'18px'}>
-              {product.name}
-            </Text>
-            <Text 
-              fontSize="14px" 
-              color="#b8b8b8"
-              >
-              {product.description}
-            </Text>
-            <Text 
-              fontWeight="bold"
-              fontSize="16px" 
-              color="000000">
-              {currency(product.price)}
-            </Text>
-          </Box>
-          <Button 
-          variant={'outline'}
-          borderColor={'black'}
-          borderTopLeftRadius={'8px'}
-          borderTopRightRadius={'0px'}
-          borderBottomRightRadius={'8px'}
-          borderBottomLeftRadius={'0px'}
-          alignSelf={'flex-end'}
-          fontSize={'12px'}
-          maxW={'90px'}
-          minW='90px'
-          h={'31px'}
-          padding={'0'}
-          margin={'0'}
-          color={'black'}
-          >adicionar
-          </Button>
+          <GridItem colSpan={1}>
+            <Image
+              w="97px"
+              maxW="97px"
+              h="112.6px"
+              maxH={'112.6px'}
+              borderTopLeftRadius="8px"
+              borderBottomLeftRadius="8px"
+              src={product.photoUrl}
+              alt={product.name}
+            />
+          </GridItem>
+          <GridItem colSpan={1}>
+            <Grid>
+              <GridItem>
+                <Text
+                  fontWeight="bold"
+                  fontSize="16px"
+                  color="#e86e5a"
+                  marginTop={'18px'}>
+                  {product.name}
+                </Text>
+              </GridItem>
+              <GridItem>
+                <Text
+                  fontSize="14px"
+                  color="#b8b8b8"
+                >
+                  {product.description}
+                </Text>
+              </GridItem>
+              <GridItem>
+                <Text
+                  fontWeight="bold"
+                  fontSize="16px"
+                  color="000000">
+                  {currency(product.price)}
+                </Text>
+              </GridItem>
+              <GridItem justifySelf="flex-end">
+                <Button
+                  variant={'outline'}
+                  borderColor={'black'}
+                  borderTopLeftRadius={'8px'}
+                  borderTopRightRadius={'0px'}
+                  borderBottomRightRadius={'8px'}
+                  borderBottomLeftRadius={'0px'}
+                  fontSize={'12px'}
+                  maxW={'90px'}
+                  minW='90px'
+                  h={'31px'}
+                  color={'black'}
+                  bg='orange'
+                >adicionar
+                </Button>
+              </GridItem>
+            </Grid>
+          </GridItem>
         </Grid>
       );
     }

@@ -30,6 +30,7 @@ export const theme = extendTheme({
       variants: {
         floating: {
           container: {
+            right:"12px",
             _focusWithin: {
               label: {
                 ...activeLabelStyles,
@@ -194,7 +195,6 @@ export default function SignUpPage() {
               </FormControl><br/>
 
               <Button
-                marginLeft="14px"
                 bg="#e86e5a"
                 w="328px"
                 h="42px"
