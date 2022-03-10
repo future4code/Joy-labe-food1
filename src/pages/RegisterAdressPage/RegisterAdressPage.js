@@ -3,7 +3,7 @@ import axios from "axios";
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/BASE_URL";
-import { goToHome, goToProfilePage } from "../../Routes/Coordinator";
+import { goToHome, goToLoginPage } from "../../Routes/Coordinator";
 import {
   Center,
   ChakraProvider,
@@ -101,7 +101,7 @@ export default function RegisterAdressPage() {
         <Image
           src={back}
           margin={"10px"}
-          onClick={() => goToProfilePage(navigate)}
+          onClick={() => goToLoginPage(navigate)}
         />
       </Grid>
       <hr />

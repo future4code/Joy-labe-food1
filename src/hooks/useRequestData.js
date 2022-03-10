@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
-import axios from React;
+import axios from "axios";
+import { auth } from "../constants/auth";
+import { BASE_URL } from "../constants/BASE_URL";
 
-const useRequestData = (initialData, url) => {
-    const [data, setData] = useState(initialData)
+export const useRequestData = (url) => {
+  const [data, setData] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-        axios.get(url)
-            .then((response) => {
-                setData(response.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(url)
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setIsLoading(false);
+      });
+  }, [url]);
 
-    }, [url])
+  return [data, isLoading, error];
+};
 
-    return (data)
-
-}
-
-export default useRequestData

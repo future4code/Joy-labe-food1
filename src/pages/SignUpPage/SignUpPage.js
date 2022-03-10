@@ -156,7 +156,7 @@ export default function SignUpPage() {
                   value={form.cpf}
                   onChange={onChange}
                   name={"cpf"}
-                  placeholder={"000.000.000.00"}
+                  placeholder={"000.000.000-00"}
                   m="3"
                   required
                 />
