@@ -10,8 +10,6 @@ export const useProtectedPage = () => {
     const token = getToken();
     if (!token) {
       goToLoginPage(navigate);
-    }else {
-      goToHome
     }
   });
 };
