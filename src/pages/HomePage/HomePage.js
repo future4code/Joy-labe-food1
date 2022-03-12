@@ -22,26 +22,30 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
-import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai"
-import { MdPersonOutline } from 'react-icons/md'
-import { goToCartPage, goToHome, goToProfilePage, goToResultPage } from "../../Routes/Coordinator";
+import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
+import { MdPersonOutline } from "react-icons/md";
+import {
+  goToCartPage,
+  goToHome,
+  goToProfilePage,
+  goToResultPage,
+} from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { auth } from "../../constants/auth";
-
-
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 export default function HomePage() {
+  useProtectedPage();
+
   const [listRestaurants, setListRestaurants] = useState([]);
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
 
-
   const getRestaurants = () => {
     setLoad(true);
     axios
-      .get(`${BASE_URL}/restaurants`, auth
-      )
+      .get(`${BASE_URL}/restaurants`, auth)
       .then((res) => {
         setLoad(false);
         setListRestaurants(res.data.restaurants);
@@ -51,7 +55,7 @@ export default function HomePage() {
       });
   };
 
-  const { form, onChange } = useForm({ searchRestaurant: "" })
+  const { form, onChange } = useForm({ searchRestaurant: "" });
 
   const filteredRestaurantsLists = listRestaurants
     .filter((restaurant) => {
@@ -71,16 +75,16 @@ export default function HomePage() {
           category={restaurant.category}
           onClick={() => onClickCard(restaurant.id)}
         ></RestaurantCard>
-      )
-    })
+      );
+    });
 
   useEffect(() => {
     getRestaurants();
   }, []);
 
   const onClickCard = (id) => {
-    goToResultPage(navigate, id)
-  }
+    goToResultPage(navigate, id);
+  };
   // const renderedRestaurants = listRestaurants.map((restaurant) => {
   //   return (
   //     <RestaurantCard
@@ -241,7 +245,7 @@ export default function HomePage() {
   });
 
   return (
-    <Box maxH='100vh'>
+    <Box maxH="100vh">
       <Center>
         <Heading
           as="h3"
@@ -268,23 +272,24 @@ export default function HomePage() {
             placeholder="Restaurante"
             onChange={onChange}
             value={form.searchRestaurant}
-            name={'searchRestaurant'} />
+            name={"searchRestaurant"}
+          />
         </InputGroup>
       </Center>
-      <Center h={'80vh'}>
+      <Center h={"80vh"}>
         <Tabs>
           <Center>
-            <TabList overflowX={'scroll'} overflowY={'hidden'} w='100vw'>
-              <Tab _selected={{ color: '#e86e5a' }}>Todos os Restaurantes</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Árabe</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Asiática</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Hamburguer</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Italiana</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Sorvetes</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Carnes</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Baiana</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Petiscos</Tab>
-              <Tab _selected={{ color: '#e86e5a' }}>Mexicana</Tab>
+            <TabList overflowX={"scroll"} overflowY={"hidden"} w="100vw">
+              <Tab _selected={{ color: "#e86e5a" }}>Todos os Restaurantes</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Árabe</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Asiática</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Hamburguer</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Italiana</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Sorvetes</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Carnes</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Baiana</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Petiscos</Tab>
+              <Tab _selected={{ color: "#e86e5a" }}>Mexicana</Tab>
             </TabList>
           </Center>
 
@@ -293,74 +298,63 @@ export default function HomePage() {
               <Spinner size="xl" marginTop="20px" />
             </Center>
           ) : (
-            <TabPanels overflowY={'scroll'} h='60vh'>
+            <TabPanels overflowY={"scroll"} h="60vh">
               <TabPanel>
-              {filteredRestaurantsLists.length ? filteredRestaurantsLists:<Center><Text marginTop={"20px"}>Não Encontramos :(</Text></Center>}
+                {filteredRestaurantsLists.length ? (
+                  filteredRestaurantsLists
+                ) : (
+                  <Center>
+                    <Text marginTop={"20px"}>Não Encontramos :(</Text>
+                  </Center>
+                )}
               </TabPanel>
-              <TabPanel>
-                {renderedArabicRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedAsianRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedBurgerRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedItalianRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedIceCreamRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedMeatRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedBaianoRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedSnackRestaurants}
-              </TabPanel>
-              <TabPanel>
-                {renderedMexicanRestaurants}
-              </TabPanel>
+              <TabPanel>{renderedArabicRestaurants}</TabPanel>
+              <TabPanel>{renderedAsianRestaurants}</TabPanel>
+              <TabPanel>{renderedBurgerRestaurants}</TabPanel>
+              <TabPanel>{renderedItalianRestaurants}</TabPanel>
+              <TabPanel>{renderedIceCreamRestaurants}</TabPanel>
+              <TabPanel>{renderedMeatRestaurants}</TabPanel>
+              <TabPanel>{renderedBaianoRestaurants}</TabPanel>
+              <TabPanel>{renderedSnackRestaurants}</TabPanel>
+              <TabPanel>{renderedMexicanRestaurants}</TabPanel>
             </TabPanels>
           )}
         </Tabs>
       </Center>
       <Center>
         <Grid
-          templateColumns={'repeat(3, 1fr)'}
-          shadow={'lg'}
-          borderWidth='1px'
-          w={'100vw'}
-          align='center'
-          position={'fixed'}
+          templateColumns={"repeat(3, 1fr)"}
+          shadow={"lg"}
+          borderWidth="1px"
+          w={"100vw"}
+          align="center"
+          position={"fixed"}
         >
           <GridItem>
             <IconButton
               as={AiOutlineHome}
-              bg={'white'}
-              w={'27px'}
-              h={'27px'}
-              color={'#e865a'}
-              onClick={() => goToHome(navigate)} />
+              bg={"white"}
+              w={"27px"}
+              h={"27px"}
+              color={"#e865a"}
+              onClick={() => goToHome(navigate)}
+            />
           </GridItem>
           <GridItem>
             <IconButton
               as={AiOutlineShoppingCart}
-              bg={'white'}
-              w={'27px'}
-              h={'27px'}
+              bg={"white"}
+              w={"27px"}
+              h={"27px"}
               onClick={() => goToCartPage(navigate)}
             />
           </GridItem>
           <GridItem>
             <IconButton
               as={MdPersonOutline}
-              bg={'white'}
-              w={'27px'}
-              h={'27px'}
+              bg={"white"}
+              w={"27px"}
+              h={"27px"}
               onClick={() => goToProfilePage(navigate)}
             />
           </GridItem>

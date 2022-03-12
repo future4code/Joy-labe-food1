@@ -34,11 +34,12 @@ import {
 } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../constants/auth";
-import { useRequestData } from "../../hooks/useRequestData";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 export default function ProfilePage() {
+  useProtectedPage();
+
   const navigate = useNavigate();
-  //   const [users, isLoading, error] = useRequestData(`${BASE_URL}/profile`);
   const [users, setUsers] = useState({});
   const [orders, setOrders] = useState([]);
 
@@ -65,7 +66,6 @@ export default function ProfilePage() {
       .get(`${BASE_URL}/orders/history`, auth)
       .then((res) => {
         setOrders(res.data.orders);
-        console.log(res.data.orders);
       })
       .catch((err) => {
         window.alert(err);
@@ -152,7 +152,7 @@ export default function ProfilePage() {
           >
             Histórico de pedidos
           </Text>
-          {ordersDate}
+          {orders ? ordersDate : <p>Você não possui pedidos!</p>}
         </GridItem>
       </Box>
       <GridItem>
