@@ -103,7 +103,7 @@ export default function ProfilePage() {
   });
 
   return (
-    <Grid templateRows="0fr 2fr 1fr" maxH="100vh" h="100vh">
+    <Grid templateRows="0fr 2fr 0fr" maxH="100vh" h="100vh">
       <GridItem h={'44px'}>
         <Center>
           <Heading
@@ -169,7 +169,7 @@ export default function ProfilePage() {
             align="center"
             justifyItems={'center'}
             position={"fixed"}
-            bottom={'27%'}
+            bottom={'0'}
             h={'49px'}
             bg={'#fff'}
             boxShadow={

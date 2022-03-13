@@ -65,7 +65,8 @@ export default function CartPage() {
   };
 
   return (
-    <Box maxH="100vh">
+    <Grid templateRows="0fr 2fr 0fr" maxH="100vh" h="100vh">
+      <GridItem h={'44px'}>
       <Center>
         <Heading
           as="h3"
@@ -81,6 +82,8 @@ export default function CartPage() {
           Meu carrinho
         </Heading>
       </Center>
+      </GridItem>
+    
       <Grid>
         <GridItem>
           <Grid bg={"#eeeeee"}>
@@ -152,9 +155,12 @@ export default function CartPage() {
           align="center"
           justifyItems={'center'}
           position={"fixed"}
-          bottom={'27%'}
+          bottom={'0'}
           h={'49px'}
           bg={'#fff'}
+          boxShadow={
+            "0 -1px 3px 0 rgba(0, 0, 0, 0.2), 0 -2px 1px -1px rgba(0, 0, 0, 0.12), 0 -1px 1px 0 rgba(0, 0, 0, 0.14);"
+          }
         >
           <GridItem
             alignSelf={'center'}
@@ -188,6 +194,6 @@ export default function CartPage() {
           </GridItem>
         </Grid>
       </Center>
-    </Box>
+    </Grid>
   );
 }
