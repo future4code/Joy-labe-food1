@@ -12,6 +12,7 @@ import {
   GridItem,
   Heading,
   IconButton,
+  Image,
   Input,
   InputGroup,
   InputLeftElement,
@@ -35,6 +36,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../constants/auth";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
+import homePageImage from "../../assets/homepage.svg"
+import shoppingCartImage from "../../assets/shopping-cart.svg"
+import selectedAvatarImage from "../../assets/selected-avatar.svg"
 
 export default function ProfilePage() {
   useProtectedPage();
@@ -99,8 +103,8 @@ export default function ProfilePage() {
   });
 
   return (
-    <Grid templateRows="1fr 2fr 1fr" maxH="100vh" h="100vh">
-      <GridItem>
+    <Grid templateRows="0fr 2fr 1fr" maxH="100vh" h="100vh">
+      <GridItem h={'44px'}>
         <Center>
           <Heading
             as="h3"
@@ -117,7 +121,7 @@ export default function ProfilePage() {
           </Heading>
         </Center>
       </GridItem>
-      <Box>
+      <Box overflowY={'scroll'} mb={'8px'}>
         <GridItem>
           <Grid>
             <Text fontSize="16px" m="16px 16px 8px 16px">
@@ -163,40 +167,42 @@ export default function ProfilePage() {
             borderWidth="1px"
             w={"100vw"}
             align="center"
-            position={"relative"}
-            bottom="0"
+            justifyItems={'center'}
+            position={"fixed"}
+            bottom={'27%'}
+            h={'49px'}
+            bg={'#fff'}
             boxShadow={
               "0 -1px 3px 0 rgba(0, 0, 0, 0.2), 0 -2px 1px -1px rgba(0, 0, 0, 0.12), 0 -1px 1px 0 rgba(0, 0, 0, 0.14);"
             }
-            h="49px"
-            bgColor="#FFF"
-            p="10px"
           >
-            <GridItem>
-              <IconButton
-                as={AiOutlineHome}
-                bg={"white"}
-                w={"27px"}
-                h={"27px"}
-                color={"#e865a"}
+            <GridItem
+              alignSelf={'center'}
+            >
+              <Image
+                src={homePageImage}
+                w={'27px'}
+                h={'27px'}
                 onClick={() => goToHome(navigate)}
               />
             </GridItem>
-            <GridItem>
-              <IconButton
-                as={AiOutlineShoppingCart}
-                bg={"white"}
-                w={"27px"}
-                h={"27px"}
+            <GridItem
+              alignSelf={'center'}
+            >
+              <Image
+                src={shoppingCartImage}
+                w={'27px'}
+                h={'29px'}
                 onClick={() => goToCartPage(navigate)}
               />
             </GridItem>
-            <GridItem>
-              <IconButton
-                as={MdPersonOutline}
-                bg={"white"}
-                w={"27px"}
-                h={"27px"}
+            <GridItem
+              alignSelf={'center'}
+            >
+              <Image
+                src={selectedAvatarImage}
+                w={'27px'}
+                h={'30px'}
                 onClick={() => goToProfilePage(navigate)}
               />
             </GridItem>
