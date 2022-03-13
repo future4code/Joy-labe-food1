@@ -27,9 +27,6 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
-import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
-import { MdPersonOutline } from "react-icons/md";
 import {
   goToCartPage,
   goToHome,
@@ -39,6 +36,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../constants/auth";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
+import homePageImage from "../../assets/homepage.svg"
+import selectedShoppingCartImage from "../../assets/selected-shopping-cart.svg"
+import avatarImage from "../../assets/avatar.svg"
 
 export default function CartPage() {
   useProtectedPage();
@@ -94,73 +94,15 @@ export default function CartPage() {
         </GridItem>
 
         {/* TODO cards dos produtos com os produtos adicionados no carrinho (provavelmente usando global state) */}
-
-        {/* <Flex
-        border="solid 1px #b8b8b8"
-        borderRadius="8px"
-        margin={"0 0 -1px 43.5px"}
-        maxW={"328px"}
-        maxH={"216px"}
-        key={product.id}
-      >
-        <Image
-          w="97px"
-          h="112.6px"
-          borderTopLeftRadius="8px"
-          borderBottomLeftRadius="8px"
-          src={product.photoUrl}
+        {/* <ProductsCard
+          key={product.id}
+          photoUrl={product.photoUrl}
           alt={product.name}
-        />
-        <Box ml="3">
-          <Text
-            fontWeight="bold"
-            fontSize="16px"
-            color="#e86e5a"
-            margin={"18px 16px 6px 0"}
-            isTruncated
-          >
-            {product.name}
-          </Text>
-          <Text
-            fontSize="14px"
-            color="#b8b8b8"
-            h={"30px"}
-            w={"198px"}
-            m={"6px 17px 6px 0"}
-          >
-            {product.description}
-          </Text>
-          <Text
-            fontWeight="bold"
-            fontSize="16px"
-            color="000000"
-            w={"108px"}
-            isTruncated
-          >
-            {currency(product.price)}
-          </Text>
-        </Box>
-        <Button
-          variant={"outline"}
-          borderColor={"black"}
-          borderTopLeftRadius={"8px"}
-          borderTopRightRadius={"0px"}
-          borderBottomRightRadius={"8px"}
-          onClick={onOpen}
-          borderBottomLeftRadius={"0px"}
-          alignSelf={"flex-end"}
-          fontSize={"12px"}
-          maxW={"90px"}
-          minW="90px"
-          h={"31px"}
-          m={"9px 0 0 17px"}
-          padding={"0"}
-          margin={"0 0 -1px -87px"}
-          color={"black"}
-        >
-          adicionar
-        </Button>
-      </Flex> */}
+          name={product.name}
+          description={product.description}
+          price={product.price}
+          // onClick={() => onOpen(ModalAddButton)}
+        /> */}
         <Text m={"16px 16px 8px 16px"} fontSize="16px">
           SUBTOTAL
           {/* SUBTOTAL R${order.totalPrice.toFixed(2).replace(".", ",")} */}
@@ -208,33 +150,39 @@ export default function CartPage() {
           borderWidth="1px"
           w={"100vw"}
           align="center"
+          justifyItems={'center'}
           position={"fixed"}
+          bottom={'27%'}
+          h={'49px'}
+          bg={'#fff'}
         >
-          <GridItem>
-            <IconButton
-              as={AiOutlineHome}
-              bg={"white"}
-              w={"27px"}
-              h={"27px"}
-              color={"#e865a"}
+          <GridItem
+            alignSelf={'center'}
+          >
+            <Image
+              src={homePageImage}
+              w={'27px'}
+              h={'27px'}
               onClick={() => goToHome(navigate)}
             />
           </GridItem>
-          <GridItem>
-            <IconButton
-              as={AiOutlineShoppingCart}
-              bg={"white"}
-              w={"27px"}
-              h={"27px"}
+          <GridItem
+            alignSelf={'center'}
+          >
+            <Image
+              src={selectedShoppingCartImage}
+              w={'27px'}
+              h={'29px'}
               onClick={() => goToCartPage(navigate)}
             />
           </GridItem>
-          <GridItem>
-            <IconButton
-              as={MdPersonOutline}
-              bg={"white"}
-              w={"27px"}
-              h={"27px"}
+          <GridItem
+            alignSelf={'center'}
+          >
+            <Image
+              src={avatarImage}
+              w={'27px'}
+              h={'30px'}
               onClick={() => goToProfilePage(navigate)}
             />
           </GridItem>
