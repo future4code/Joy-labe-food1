@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import back from "../../assets/back.svg";
 import logo from "../../assets/logo-laranja.png";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 const activeLabelStyles = {
@@ -79,7 +79,7 @@ export default function EditProfilePage() {
       cpf: form.cpf,
     };
     axios
-      .put(`${BASE_URL}/profile`, body, auth)
+      .put(`${BASE_URL}/profile`, body, auth())
       .then((res) => {
         cleanFields();
         console.log(res.data);

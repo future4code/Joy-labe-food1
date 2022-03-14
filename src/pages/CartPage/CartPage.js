@@ -34,11 +34,11 @@ import {
   goToResultPage,
 } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import homePageImage from "../../assets/homepage.svg"
-import selectedShoppingCartImage from "../../assets/selected-shopping-cart.svg"
-import avatarImage from "../../assets/avatar.svg"
+import homePageImage from "../../assets/homepage.svg";
+import selectedShoppingCartImage from "../../assets/selected-shopping-cart.svg";
+import avatarImage from "../../assets/avatar.svg";
 
 export default function CartPage() {
   useProtectedPage();
@@ -54,7 +54,7 @@ export default function CartPage() {
 
   const getUserAddress = () => {
     axios
-      .get(`${BASE_URL}/profile`, auth)
+      .get(`${BASE_URL}/profile`, auth())
       .then((res) => {
         setAddress(res.data.user);
         console.log(res.data.user);
@@ -81,20 +81,20 @@ export default function CartPage() {
           Meu carrinho
         </Heading>
       </Center>
-      <Grid>
-        <GridItem>
-          <Grid bg={"#eeeeee"}>
-            <Text m="16px 16px 8px 16px" color={"#b8b8b8"} fontSize="16px">
-              Endereço de entrega
-            </Text>
-            <Text m="0px 16px 16px 16px" fontSize="16px">
-              {address.address}
-            </Text>
-          </Grid>
-        </GridItem>
+      <Grid templateRows="0fr 0fr 1fr 0fr" maxH="100vh" h="100vh">
+        <Grid>
+          <GridItem>
+            <Grid bg={"#eeeeee"}>
+              <Text m="16px 16px 8px 16px" color={"#b8b8b8"} fontSize="16px">
+                Endereço de entrega
+              </Text>
+              <Text m="0px 16px 16px 16px" fontSize="16px">
+                {address.address}
+              </Text>
+            </Grid>
+          </GridItem>
 
-        {/* TODO cards dos produtos com os produtos adicionados no carrinho (provavelmente usando global state) */}
-        {/* <ProductsCard
+          {/* <ProductsCard
           key={product.id}
           photoUrl={product.photoUrl}
           alt={product.name}
@@ -103,44 +103,45 @@ export default function CartPage() {
           price={product.price}
           // onClick={() => onOpen(ModalAddButton)}
         /> */}
-        <Text m={"16px 16px 8px 16px"} fontSize="16px">
-          SUBTOTAL
-          {/* SUBTOTAL R${order.totalPrice.toFixed(2).replace(".", ",")} */}
-        </Text>
-
-        <GridItem overflowY="hidden">
-          <Text
-            alignSelf="center"
-            textAlign="left"
-            fontSize="16px"
-            m={"16px 16px 8px 16px"}
-            borderBottom="1px"
-            borderBottomColor="#000000"
-          >
-            Forma de pagamento
+          <Text m={"16px 16px 8px 16px"} fontSize="16px">
+            SUBTOTAL
+            {/* SUBTOTAL R${order.totalPrice.toFixed(2).replace(".", ",")} */}
           </Text>
-          <RadioGroup
-            m={"16px 16px 8px 16px"}
-            onChange={setPayment}
-            value={payment}
-          >
-            <Stack direction="row">
-              <Radio value="1">Dinheiro</Radio>
-              <Radio value="2">Cartão</Radio>
-            </Stack>
-          </RadioGroup>
-        </GridItem>
-        <GridItem>
-          <Button
-            m={"16px 16px 16px 16px"}
-            bg="#e86e5a"
-            w="328px"
-            h="42px"
-            type={"submit"}
-          >
-            Confirmar
-          </Button>
-        </GridItem>
+
+          <GridItem overflowY="hidden">
+            <Text
+              alignSelf="center"
+              textAlign="left"
+              fontSize="16px"
+              m={"16px 16px 8px 16px"}
+              borderBottom="1px"
+              borderBottomColor="#000000"
+            >
+              Forma de pagamento
+            </Text>
+            <RadioGroup
+              m={"16px 16px 8px 16px"}
+              onChange={setPayment}
+              value={payment}
+            >
+              <Stack direction="row">
+                <Radio value="1">Dinheiro</Radio>
+                <Radio value="2">Cartão</Radio>
+              </Stack>
+            </RadioGroup>
+          </GridItem>
+          <GridItem>
+            <Button
+              m={"16px 16px 16px 16px"}
+              bg="#e86e5a"
+              w="328px"
+              h="42px"
+              type={"submit"}
+            >
+              Confirmar
+            </Button>
+          </GridItem>
+        </Grid>
       </Grid>
 
       <Center>
@@ -150,39 +151,33 @@ export default function CartPage() {
           borderWidth="1px"
           w={"100vw"}
           align="center"
-          justifyItems={'center'}
-          position={"fixed"}
-          bottom={'27%'}
-          h={'49px'}
-          bg={'#fff'}
+          justifyItems={"center"}
+          // position={"fixed"}
+          bottom={"27%"}
+          h={"49px"}
+          bg={"#fff"}
         >
-          <GridItem
-            alignSelf={'center'}
-          >
+          <GridItem alignSelf={"center"}>
             <Image
               src={homePageImage}
-              w={'27px'}
-              h={'27px'}
+              w={"27px"}
+              h={"27px"}
               onClick={() => goToHome(navigate)}
             />
           </GridItem>
-          <GridItem
-            alignSelf={'center'}
-          >
+          <GridItem alignSelf={"center"}>
             <Image
               src={selectedShoppingCartImage}
-              w={'27px'}
-              h={'29px'}
+              w={"27px"}
+              h={"29px"}
               onClick={() => goToCartPage(navigate)}
             />
           </GridItem>
-          <GridItem
-            alignSelf={'center'}
-          >
+          <GridItem alignSelf={"center"}>
             <Image
               src={avatarImage}
-              w={'27px'}
-              h={'30px'}
+              w={"27px"}
+              h={"30px"}
               onClick={() => goToProfilePage(navigate)}
             />
           </GridItem>

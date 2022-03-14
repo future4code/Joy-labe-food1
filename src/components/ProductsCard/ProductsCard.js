@@ -2,7 +2,7 @@ import { Box, Button, Center, Flex, Image, Text, useDisclosure, Modal, ModalBody
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 import { BASE_URL } from "../../constants/BASE_URL";
 
 export default function ProductsCard(property) {
@@ -48,7 +48,7 @@ export default function ProductsCard(property) {
   return (
     <Box>
       {
-        productsAmount ? (
+        !productsAmount.length ? (
           <Box>
             <Center>
               <Flex

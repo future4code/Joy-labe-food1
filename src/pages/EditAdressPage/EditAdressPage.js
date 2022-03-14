@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import back from "../../assets/back.svg";
 import logo from "../../assets/logo-laranja.png";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 const activeLabelStyles = {
@@ -62,7 +62,7 @@ export const theme = extendTheme({
 });
 
 export default function EditAdressPage() {
-  useProtectedPage()
+  useProtectedPage();
   const navigate = useNavigate();
   const { form, onChange, cleanFields } = useForm({
     street: "",
@@ -84,12 +84,13 @@ export default function EditAdressPage() {
       complement: form.complement,
     };
     axios
-      .put(`${BASE_URL}/address`, body, auth)
+      .put(`${BASE_URL}/address`, body, auth())
       .then((res) => {
         cleanFields();
         console.log(res.data);
+        localStorage.setItem("token", res.data.token);
         window.alert("Endereço editado com sucesso!");
-        goToProfilePage(navigate);
+        goToHome(navigate);
       })
       .catch((err) => {
         window.alert(err.response.data.message);

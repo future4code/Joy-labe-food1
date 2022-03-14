@@ -34,7 +34,7 @@ import {
   goToResultPage,
 } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import homePageImage from "../../assets/homepage.svg"
 import shoppingCartImage from "../../assets/shopping-cart.svg"
@@ -57,7 +57,7 @@ export default function ProfilePage() {
 
   const getUsers = () => {
     axios
-      .get(`${BASE_URL}/profile`, auth)
+      .get(`${BASE_URL}/profile`, auth())
       .then((res) => {
         setUsers(res.data.user);
       })
@@ -67,7 +67,7 @@ export default function ProfilePage() {
   };
   const getOrders = () => {
     axios
-      .get(`${BASE_URL}/orders/history`, auth)
+      .get(`${BASE_URL}/orders/history`, auth())
       .then((res) => {
         setOrders(res.data.orders);
       })
@@ -103,7 +103,7 @@ export default function ProfilePage() {
   });
 
   return (
-    <Grid templateRows="0fr 2fr 1fr" maxH="100vh" h="100vh">
+    <Grid templateRows="0fr 2fr 0fr" maxH="100vh" h="100vh">
       <GridItem h={'44px'}>
         <Center>
           <Heading
@@ -168,7 +168,7 @@ export default function ProfilePage() {
             w={"100vw"}
             align="center"
             justifyItems={'center'}
-            position={"fixed"}
+            // position={"fixed"}
             bottom={'27%'}
             h={'49px'}
             bg={'#fff'}
