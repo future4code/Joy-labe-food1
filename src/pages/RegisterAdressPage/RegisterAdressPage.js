@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import back from "../../assets/back.svg";
 import logo from "../../assets/logo-laranja.png";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 
 
 const activeLabelStyles = {
@@ -83,11 +83,12 @@ export default function RegisterAdressPage() {
       complement: form.complement
     };
     axios
-      .put(`${BASE_URL}/address`, body, auth)
+      .put(`${BASE_URL}/address`, body, auth())
       .then((res) => {
         cleanFields();
         console.log(res.data);
-        window.alert("Endereço criado com sucesso!");
+        localStorage.setItem("token", res.data.token);
+        window.alert("Endereço editado com sucesso!");
         goToHome(navigate);
       })
       .catch((err) => {

@@ -30,7 +30,7 @@ import {
 } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import selectedHomePageImage from "../../assets/selected-homepage.svg"
 import shoppingCartImage from "../../assets/shopping-cart.svg"
@@ -46,7 +46,7 @@ export default function HomePage() {
   const getRestaurants = () => {
     setLoad(true);
     axios
-      .get(`${BASE_URL}/restaurants`, auth)
+      .get(`${BASE_URL}/restaurants`, auth())
       .then((res) => {
         setLoad(false);
         setListRestaurants(res.data.restaurants);
@@ -233,7 +233,7 @@ export default function HomePage() {
   });
 
   return (
-    <Grid templateRows="0fr 0fr 2fr 1fr" maxH="100vh" h="100vh">
+    <Grid templateRows="0fr 0fr 1fr 0fr" maxH="100vh" h="100vh">
       <GridItem h={'44px'}>
         <Center>
           <Heading
@@ -325,7 +325,7 @@ export default function HomePage() {
           w={"100vw"}
           align="center"
           justifyItems={'center'}
-          position={"fixed"}
+          // position={"fixed"}
           bottom={'27%'}
           h={'49px'}
           bg={'#fff'}

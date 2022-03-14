@@ -3,7 +3,7 @@ import axios from "axios";
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/BASE_URL";
-import { goToHome, goToLoginPage } from "../../Routes/Coordinator";
+import { goToEditAdressPage, goToHome, goToLoginPage } from "../../Routes/Coordinator";
 import {
   Center,
   ChakraProvider,
@@ -82,7 +82,7 @@ export default function SignUpPage() {
         cleanFields()
         console.log(res.data.user);
         window.alert("Cadastro efetuado com sucesso!")
-        goToHome(navigate)
+        goToEditAdressPage(navigate)
       })
       .catch((err) => {
         window.alert(err.response.data.message);

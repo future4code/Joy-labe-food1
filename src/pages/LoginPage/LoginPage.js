@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useForm from "../../hooks/useForm";
 import { BASE_URL } from "../../constants/BASE_URL";
-import { setToken, getToken } from "../../constants/localStorage";
+import { getToken } from "../../constants/localStorage";
 import {
   Button,
   Center,
@@ -17,7 +17,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { goToHome, goToSignUpPage } from "../../Routes/Coordinator";
+import {
+  goToEditAdressPage,
+  goToHome,
+  goToSignUpPage,
+} from "../../Routes/Coordinator";
 import logo from "../../assets/logo-laranja.png";
 import Loading from "../../constants/Loading";
 
@@ -78,9 +82,15 @@ export default function LoginPage() {
       .post(`${BASE_URL}/login`, body)
       .then((res) => {
         cleanFields();
-        setToken(res.data.token);
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        if (res.data.user.hasAddress === false) {
+          console.log("entrei");
+          goToEditAdressPage(navigate);
+        } else {
+          goToHome(navigate);
+        }
         console.log(res.data.token);
-        goToHome(navigate);
       })
       .catch((err) => {
         console.log(err);
@@ -93,7 +103,7 @@ export default function LoginPage() {
     if (token !== null) {
       setNoToken(false);
       setTimeout(() => {
-        goToHome(navigate)
+        goToHome(navigate);
       }, 1000);
     }
   }, []);

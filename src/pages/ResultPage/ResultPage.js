@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants/BASE_URL";
-import { auth } from "../../constants/auth";
+import auth from "../../constants/auth";
 import RestaurantDetailsCard from "../../components/RestaurantsCard/RestaurantsDetailsCard";
 import {
   Box,
@@ -40,7 +40,7 @@ export default function ResultPage() {
 
   const getRestaurantDetails = (id) => {
     axios
-      .get(`${BASE_URL}/restaurants/${id}`, auth)
+      .get(`${BASE_URL}/restaurants/${id}`, auth())
       .then((res) => {
         setRestaurantDetails(res.data.restaurant);
         setProducts(res.data.restaurant.products);

@@ -1,7 +1,10 @@
 import { getToken } from "./localStorage"
 
-export const auth = {
-    headers: {
-        auth: getToken()
+export default function auth() {
+    const authData = {
+        headers: {
+            auth: localStorage.getItem("token")
+        }
     }
+    return authData
 }
