@@ -19,25 +19,66 @@ Email de teste: astrodev@future4.com
 Senha: 123456
 
 O que funciona:
-- [x]  
-- [x] 
-- [x] 
+- [x]  Cadastro de usuário / endereço
+- [x]  Login
+- [x]  Home 
+- [x]  Busca de restaurantes
+- [x]  Carrosel com categoria de restaurantes
+- [x]  Perfil usuário
+- [x]  Pagina do carrinho
+- [x]  Editar endereço
 
 O que não funciona: 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Adicionar itens ao carrinho e visualizá-los lá / removê-los
 
-## VISUALIZAÇÃO DO SITE:
+
+## VISUALIZAÇÃO DO SITE (visualização no navegador do PC):
 
 ### HOME / PAGINA LOGIN:
-![image](https://user-images.githubusercontent.com/89141117/156672677-82a861b6-5180-43b8-9866-595b57ea18e2.png)
+<img src= "https://user-images.githubusercontent.com/89141117/156672677-82a861b6-5180-43b8-9866-595b57ea18e2.png" width="600" height="300">
 
 ### PAGINA CADASTRO:
-![image](https://user-images.githubusercontent.com/89141117/156672840-6626fd8d-123a-49b0-b1d8-c3ee25756600.png)
+<img src= "https://user-images.githubusercontent.com/89141117/156672840-6626fd8d-123a-49b0-b1d8-c3ee25756600.png" width="600" height="300">
+
+### PAGINA CADASTRO ENDEREÇO:
+<img src= "https://user-images.githubusercontent.com/89141117/158096487-98f2c914-b587-4d90-8a75-b42f643ade88.png" width="600" height="300">
 
 ### HOME / LOGADO:
-![image](https://user-images.githubusercontent.com/89141117/156673032-b9b1c4f2-6626-4877-9579-3ed417740eed.png)
+<img src= "https://user-images.githubusercontent.com/89141117/156673032-b9b1c4f2-6626-4877-9579-3ed417740eed.png" width="600" height="300">
+
+## VISUALIZAÇÃO DO SITE (visualização no navegador do celular):
+
+### SPLASH PAGE:
+<img src= "https://user-images.githubusercontent.com/89141117/158096838-f98f6fb8-b49d-4f17-8c7d-a5db1158274e.jpeg" width="200" height="400">
+
+### HOME LOADING:
+<img src= "https://user-images.githubusercontent.com/89141117/158096874-733d49cb-5987-4b16-acc9-66dd1c5a3ca6.jpeg" width="200" height="400">
+
+### HOME:
+<img src= "https://user-images.githubusercontent.com/89141117/158096904-a20a203d-8f81-43a6-8290-0b895f85c106.jpeg" width="200" height="400">
+
+### HOME FILTRADA:
+<img src= "https://user-images.githubusercontent.com/89141117/158096938-2ea19ac9-e0e6-4e12-b26b-1a028b91cd4b.jpeg" width="200" height="400">
+
+### DETALHES RESTAURANTES:
+<img src= "https://user-images.githubusercontent.com/89141117/158096971-dbabadfa-a22d-4d55-95cc-b6e602df207c.jpeg" width="200" height="400">
+
+### ADICIONAR CARRINHO:
+<img src= "https://user-images.githubusercontent.com/89141117/158097023-e55d274d-3aa4-46a1-b17b-57acf9b52410.jpeg" width="200" height="400">
+<img src= "https://user-images.githubusercontent.com/89141117/158097065-c6149075-efbb-4bed-90a4-74d1ff6b5b92.jpeg" width="200" height="400">
+
+### CARRINHO:
+<img src= "https://user-images.githubusercontent.com/89141117/158097277-95b630aa-008e-4411-aa5a-7f0bbe04f0b1.jpeg" width="200" height="400">
+
+### PERFIL:
+<img src= "https://user-images.githubusercontent.com/89141117/158097307-83c30f8c-769f-4fc3-b635-981df3f73ded.jpeg" width="200" height="400">
+
+### VIDEO CURTO COM NAVEGAÇÂO PELO SITE:
+
+https://user-images.githubusercontent.com/89141117/158097339-0b51cc77-e797-4dc6-accf-8c35a6556288.mp4
+
+
+
 
 <h1 align="center"> 
   👷‍♂️  Rappi4 ⚒️ Em Construção  👷‍♀️ 
